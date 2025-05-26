@@ -60,3 +60,12 @@ def get_next_nearest_holiday():
     """
     db = database("sqlite:///holidays.db")
     return list(db.query(query))[0]
+
+def next_n_upcoming_holidays(holiday: dict | Holiday, n: int = 3):
+    if isinstance(holiday, dict):
+        dt = holiday.get('date')
+    else:
+        dt = holiday.date
+    
+    db = database("sqlite:///holidays.db")
+    return db.query(f"SELECT * FROM holiday WHERE date > '{dt}' ORDER BY date LIMIT {n}")
