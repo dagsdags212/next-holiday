@@ -1,0 +1,9 @@
+[project]
+name = "next-holiday"
+version = "0.1.0"
+description = "When is the next holiday?"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-fasthtml>=0.12.18",
+]
