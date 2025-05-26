@@ -9,9 +9,21 @@ def Badge(label, color, **cls):
     return Span(label, cls=f"bg-{color}-500 text-white text-{cls.get('font_size', 'xs')} px-{cls.get('px', 4)} py-{cls.get('py', 2)} mb-{cls.get('mb', 4)} rounded-md") 
 
 def HolidayCard(holiday):
+    match holiday.type:
+        case "Regular Holiday":
+            color = "green"
+        case "Special Non-Working Day":
+            color = "cyan"
+        case "Special Working Day":
+            color = "red"
+        case "Common Local Holiday":
+            color = "amber"
+        case _:
+            color = "slate"
+
     return Article(
         Div(
-            Badge(holiday.type, color="slate", px=2, py=1.5, mb=2),
+            Badge(holiday.type, color=color, px=2, py=1.5, mb=2),
             cls="flex flex-row gap-4"
         ),
         H3(holiday.name, cls="mt-0.5 text-2xl font-medium text-gray-900 mb-2"),
